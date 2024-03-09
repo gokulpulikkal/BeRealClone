@@ -24,6 +24,7 @@
 		4B45646A2B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564682B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift */; };
 		4B45646B2B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4564692B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib */; };
 		4B45646E2B9CD6E600DC00A5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4B45646D2B9CD6E600DC00A5 /* Kingfisher */; };
+		4B4564702B9CDAD000DC00A5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45646F2B9CDAD000DC00A5 /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		4B4564652B9C544200DC00A5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		4B4564682B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
 		4B4564692B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
+		4B45646F2B9CDAD000DC00A5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				4B45645F2B9C42E000DC00A5 /* HomeViewController.swift */,
 				4B4564612B9C4EE300DC00A5 /* PostPhotoViewController.swift */,
 				4B4564622B9C4EE300DC00A5 /* PostPhotoViewController.xib */,
+				4B45646F2B9CDAD000DC00A5 /* BaseViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 				4B4564432B9C28CD00DC00A5 /* SceneDelegate.swift in Sources */,
 				4B4564662B9C544200DC00A5 /* Post.swift in Sources */,
 				4B45645E2B9C3CE000DC00A5 /* User.swift in Sources */,
+				4B4564702B9CDAD000DC00A5 /* BaseViewController.swift in Sources */,
 				4B45646A2B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift in Sources */,
 				4B45645A2B9C313D00DC00A5 /* UserAuthViewController.swift in Sources */,
 				4B4564632B9C4EE300DC00A5 /* PostPhotoViewController.swift in Sources */,

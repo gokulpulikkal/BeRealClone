@@ -8,22 +8,40 @@
 import UIKit
 import ParseSwift
 
-class LaunchScreenVC: UIViewController {
+class LaunchScreenVC: BaseViewController {
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
+        view.backgroundColor = .black
+        setLogo()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if User.current != nil {
-            loadHomeViewController()
-        } else {
-            showAuthenticationView()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) { [weak self] in
+            if User.current != nil {
+                self?.loadHomeViewController()
+            } else {
+                self?.showAuthenticationView()
+            }
         }
+    }
+    
+    func setLogo() {
+        let label = UILabel()
+        label.text = "BeReal."
+        label.font = UIFont.boldSystemFont(ofSize: 40)
+        label.textColor = UIColor.systemBlue
+        label.textAlignment = .center
+        view.addSubview(label)
+        // Set Auto Layout constraints
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+           label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+           label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
     }
     
     func showAuthenticationView() {
@@ -35,15 +53,7 @@ class LaunchScreenVC: UIViewController {
     
     func loadHomeViewController() {
         let homeVC = HomeViewController()
-
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let sceneDelegate = windowScene.delegate as? SceneDelegate else {
-            return
-        }
-
-        let window = sceneDelegate.window
-        let navigationController = UINavigationController(rootViewController: homeVC)
-        window?.rootViewController = navigationController
+        setRootViewController(homeVC)
     }
     
 }

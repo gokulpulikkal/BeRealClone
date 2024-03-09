@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: BaseViewController {
     
     let postItButton = {
         let createPostButton = UIButton(type: .system)
@@ -85,7 +85,7 @@ class HomeViewController: UIViewController {
         
         // Create a collection view
         collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .black
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UINib(nibName: "FeedCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "FeedCollectionViewCell")
@@ -103,7 +103,8 @@ class HomeViewController: UIViewController {
         User.logout { [weak self] result in
             switch result {
                 case .success:
-                    self?.navigationController?.popViewController(animated: true)
+                    let launchViewController = LaunchScreenVC()
+                    self?.setRootViewController(launchViewController)
                 case .failure(let error):
                     print("Failed to log out: \(error.message)")
             }
