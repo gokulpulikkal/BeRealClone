@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserAuthViewController" customModule="BeRealClone" customModuleProvider="target">
+            <connections>
+                <outlet property="passwordTextField" destination="qZN-yl-92y" id="C1D-XS-KKK"/>
+                <outlet property="userNameTextField" destination="EDP-D0-V3L" id="Wxy-AO-LiI"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="4Fh-xA-3yY">
+                    <rect key="frame" x="50" y="345" width="293" height="162.33333333333337"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Gokul" borderStyle="roundedRect" placeholder="User name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-D0-V3L">
+                            <rect key="frame" x="0.0" y="0.0" width="293" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="123456" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="qZN-yl-92y">
+                            <rect key="frame" x="0.0" y="64" width="293" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nu0-r9-f60">
+                            <rect key="frame" x="0.0" y="127.99999999999999" width="293" height="34.333333333333329"/>
+                            <state key="normal" title="Button"/>
+                            <buttonConfiguration key="configuration" style="filled" title="Login"/>
+                            <connections>
+                                <action selector="onLoginButtonClick:" destination="-1" eventType="touchUpInside" id="5Kz-wj-pga"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZO1-J5-RaB">
+                    <rect key="frame" x="154.66666666666666" y="527.33333333333337" width="84" height="34.333333333333371"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
+                    <connections>
+                        <action selector="onSignupButtonPress:" destination="-1" eventType="touchUpInside" id="OBF-7x-F3w"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="4Fh-xA-3yY" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="bsC-6y-hql"/>
+                <constraint firstItem="ZO1-J5-RaB" firstAttribute="top" secondItem="4Fh-xA-3yY" secondAttribute="bottom" constant="20" id="iat-rv-3aT"/>
+                <constraint firstItem="4Fh-xA-3yY" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="50" id="u0W-g0-qy7"/>
+                <constraint firstItem="ZO1-J5-RaB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vkp-iB-JN2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="4Fh-xA-3yY" secondAttribute="trailing" constant="50" id="w7q-ha-agj"/>
+            </constraints>
+            <point key="canvasLocation" x="131" y="-11"/>
+        </view>
+    </objects>
+</document>

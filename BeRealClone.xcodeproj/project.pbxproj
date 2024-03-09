@@ -9,21 +9,30 @@
 /* Begin PBXBuildFile section */
 		4B4564412B9C28CD00DC00A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564402B9C28CD00DC00A5 /* AppDelegate.swift */; };
 		4B4564432B9C28CD00DC00A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564422B9C28CD00DC00A5 /* SceneDelegate.swift */; };
-		4B4564452B9C28CD00DC00A5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564442B9C28CD00DC00A5 /* ViewController.swift */; };
+		4B4564452B9C28CD00DC00A5 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564442B9C28CD00DC00A5 /* LaunchScreenVC.swift */; };
 		4B4564482B9C28CD00DC00A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B4564462B9C28CD00DC00A5 /* Main.storyboard */; };
 		4B45644A2B9C28CF00DC00A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B4564492B9C28CF00DC00A5 /* Assets.xcassets */; };
 		4B45644D2B9C28CF00DC00A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B45644B2B9C28CF00DC00A5 /* LaunchScreen.storyboard */; };
+		4B4564562B9C291C00DC00A5 /* ParseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4B4564552B9C291C00DC00A5 /* ParseSwift */; };
+		4B45645A2B9C313D00DC00A5 /* UserAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564582B9C313D00DC00A5 /* UserAuthViewController.swift */; };
+		4B45645B2B9C313D00DC00A5 /* UserAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4564592B9C313D00DC00A5 /* UserAuthViewController.xib */; };
+		4B45645E2B9C3CE000DC00A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45645D2B9C3CE000DC00A5 /* User.swift */; };
+		4B4564602B9C42E000DC00A5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45645F2B9C42E000DC00A5 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4B45643D2B9C28CD00DC00A5 /* BeRealClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeRealClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4564402B9C28CD00DC00A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B4564422B9C28CD00DC00A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		4B4564442B9C28CD00DC00A5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4B4564442B9C28CD00DC00A5 /* LaunchScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenVC.swift; sourceTree = "<group>"; };
 		4B4564472B9C28CD00DC00A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4B4564492B9C28CF00DC00A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4B45644C2B9C28CF00DC00A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4B45644E2B9C28CF00DC00A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4B4564582B9C313D00DC00A5 /* UserAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthViewController.swift; sourceTree = "<group>"; };
+		4B4564592B9C313D00DC00A5 /* UserAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserAuthViewController.xib; sourceTree = "<group>"; };
+		4B45645D2B9C3CE000DC00A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4B45645F2B9C42E000DC00A5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B4564562B9C291C00DC00A5 /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +66,35 @@
 		4B45643F2B9C28CD00DC00A5 /* BeRealClone */ = {
 			isa = PBXGroup;
 			children = (
+				4B45645C2B9C3CC800DC00A5 /* Models */,
+				4B4564572B9C310500DC00A5 /* ViewControllers */,
 				4B4564402B9C28CD00DC00A5 /* AppDelegate.swift */,
 				4B4564422B9C28CD00DC00A5 /* SceneDelegate.swift */,
-				4B4564442B9C28CD00DC00A5 /* ViewController.swift */,
 				4B4564462B9C28CD00DC00A5 /* Main.storyboard */,
 				4B4564492B9C28CF00DC00A5 /* Assets.xcassets */,
 				4B45644B2B9C28CF00DC00A5 /* LaunchScreen.storyboard */,
 				4B45644E2B9C28CF00DC00A5 /* Info.plist */,
 			);
 			path = BeRealClone;
+			sourceTree = "<group>";
+		};
+		4B4564572B9C310500DC00A5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4B4564442B9C28CD00DC00A5 /* LaunchScreenVC.swift */,
+				4B4564582B9C313D00DC00A5 /* UserAuthViewController.swift */,
+				4B4564592B9C313D00DC00A5 /* UserAuthViewController.xib */,
+				4B45645F2B9C42E000DC00A5 /* HomeViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		4B45645C2B9C3CC800DC00A5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4B45645D2B9C3CE000DC00A5 /* User.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +113,9 @@
 			dependencies = (
 			);
 			name = BeRealClone;
+			packageProductDependencies = (
+				4B4564552B9C291C00DC00A5 /* ParseSwift */,
+			);
 			productName = BeRealClone;
 			productReference = 4B45643D2B9C28CD00DC00A5 /* BeRealClone.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +144,9 @@
 				Base,
 			);
 			mainGroup = 4B4564342B9C28CD00DC00A5;
+			packageReferences = (
+				4B4564542B9C291C00DC00A5 /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+			);
 			productRefGroup = 4B45643E2B9C28CD00DC00A5 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -128,6 +164,7 @@
 				4B45644D2B9C28CF00DC00A5 /* LaunchScreen.storyboard in Resources */,
 				4B45644A2B9C28CF00DC00A5 /* Assets.xcassets in Resources */,
 				4B4564482B9C28CD00DC00A5 /* Main.storyboard in Resources */,
+				4B45645B2B9C313D00DC00A5 /* UserAuthViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,9 +175,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4B4564452B9C28CD00DC00A5 /* ViewController.swift in Sources */,
+				4B4564452B9C28CD00DC00A5 /* LaunchScreenVC.swift in Sources */,
 				4B4564412B9C28CD00DC00A5 /* AppDelegate.swift in Sources */,
 				4B4564432B9C28CD00DC00A5 /* SceneDelegate.swift in Sources */,
+				4B45645E2B9C3CE000DC00A5 /* User.swift in Sources */,
+				4B45645A2B9C313D00DC00A5 /* UserAuthViewController.swift in Sources */,
+				4B4564602B9C42E000DC00A5 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,6 +403,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		4B4564542B9C291C00DC00A5 /* XCRemoteSwiftPackageReference "Parse-Swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/parse-community/Parse-Swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.14.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		4B4564552B9C291C00DC00A5 /* ParseSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B4564542B9C291C00DC00A5 /* XCRemoteSwiftPackageReference "Parse-Swift" */;
+			productName = ParseSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 4B4564352B9C28CD00DC00A5 /* Project object */;
 }
