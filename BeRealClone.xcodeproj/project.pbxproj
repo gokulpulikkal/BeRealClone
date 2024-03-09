@@ -18,6 +18,12 @@
 		4B45645B2B9C313D00DC00A5 /* UserAuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4564592B9C313D00DC00A5 /* UserAuthViewController.xib */; };
 		4B45645E2B9C3CE000DC00A5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45645D2B9C3CE000DC00A5 /* User.swift */; };
 		4B4564602B9C42E000DC00A5 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B45645F2B9C42E000DC00A5 /* HomeViewController.swift */; };
+		4B4564632B9C4EE300DC00A5 /* PostPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564612B9C4EE300DC00A5 /* PostPhotoViewController.swift */; };
+		4B4564642B9C4EE300DC00A5 /* PostPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4564622B9C4EE300DC00A5 /* PostPhotoViewController.xib */; };
+		4B4564662B9C544200DC00A5 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564652B9C544200DC00A5 /* Post.swift */; };
+		4B45646A2B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564682B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift */; };
+		4B45646B2B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B4564692B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib */; };
+		4B45646E2B9CD6E600DC00A5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4B45646D2B9CD6E600DC00A5 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +39,11 @@
 		4B4564592B9C313D00DC00A5 /* UserAuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserAuthViewController.xib; sourceTree = "<group>"; };
 		4B45645D2B9C3CE000DC00A5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4B45645F2B9C42E000DC00A5 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		4B4564612B9C4EE300DC00A5 /* PostPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPhotoViewController.swift; sourceTree = "<group>"; };
+		4B4564622B9C4EE300DC00A5 /* PostPhotoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostPhotoViewController.xib; sourceTree = "<group>"; };
+		4B4564652B9C544200DC00A5 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		4B4564682B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCollectionViewCell.swift; sourceTree = "<group>"; };
+		4B4564692B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B45646E2B9CD6E600DC00A5 /* Kingfisher in Frameworks */,
 				4B4564562B9C291C00DC00A5 /* ParseSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -66,6 +78,7 @@
 		4B45643F2B9C28CD00DC00A5 /* BeRealClone */ = {
 			isa = PBXGroup;
 			children = (
+				4B4564672B9CC9A900DC00A5 /* Cells */,
 				4B45645C2B9C3CC800DC00A5 /* Models */,
 				4B4564572B9C310500DC00A5 /* ViewControllers */,
 				4B4564402B9C28CD00DC00A5 /* AppDelegate.swift */,
@@ -85,6 +98,8 @@
 				4B4564582B9C313D00DC00A5 /* UserAuthViewController.swift */,
 				4B4564592B9C313D00DC00A5 /* UserAuthViewController.xib */,
 				4B45645F2B9C42E000DC00A5 /* HomeViewController.swift */,
+				4B4564612B9C4EE300DC00A5 /* PostPhotoViewController.swift */,
+				4B4564622B9C4EE300DC00A5 /* PostPhotoViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -93,8 +108,18 @@
 			isa = PBXGroup;
 			children = (
 				4B45645D2B9C3CE000DC00A5 /* User.swift */,
+				4B4564652B9C544200DC00A5 /* Post.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		4B4564672B9CC9A900DC00A5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4B4564682B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift */,
+				4B4564692B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -115,6 +140,7 @@
 			name = BeRealClone;
 			packageProductDependencies = (
 				4B4564552B9C291C00DC00A5 /* ParseSwift */,
+				4B45646D2B9CD6E600DC00A5 /* Kingfisher */,
 			);
 			productName = BeRealClone;
 			productReference = 4B45643D2B9C28CD00DC00A5 /* BeRealClone.app */;
@@ -146,6 +172,7 @@
 			mainGroup = 4B4564342B9C28CD00DC00A5;
 			packageReferences = (
 				4B4564542B9C291C00DC00A5 /* XCRemoteSwiftPackageReference "Parse-Swift" */,
+				4B45646C2B9CD6E600DC00A5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 4B45643E2B9C28CD00DC00A5 /* Products */;
 			projectDirPath = "";
@@ -162,8 +189,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B45644D2B9C28CF00DC00A5 /* LaunchScreen.storyboard in Resources */,
+				4B4564642B9C4EE300DC00A5 /* PostPhotoViewController.xib in Resources */,
 				4B45644A2B9C28CF00DC00A5 /* Assets.xcassets in Resources */,
 				4B4564482B9C28CD00DC00A5 /* Main.storyboard in Resources */,
+				4B45646B2B9CC9CF00DC00A5 /* FeedCollectionViewCell.xib in Resources */,
 				4B45645B2B9C313D00DC00A5 /* UserAuthViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -178,8 +207,11 @@
 				4B4564452B9C28CD00DC00A5 /* LaunchScreenVC.swift in Sources */,
 				4B4564412B9C28CD00DC00A5 /* AppDelegate.swift in Sources */,
 				4B4564432B9C28CD00DC00A5 /* SceneDelegate.swift in Sources */,
+				4B4564662B9C544200DC00A5 /* Post.swift in Sources */,
 				4B45645E2B9C3CE000DC00A5 /* User.swift in Sources */,
+				4B45646A2B9CC9CF00DC00A5 /* FeedCollectionViewCell.swift in Sources */,
 				4B45645A2B9C313D00DC00A5 /* UserAuthViewController.swift in Sources */,
+				4B4564632B9C4EE300DC00A5 /* PostPhotoViewController.swift in Sources */,
 				4B4564602B9C42E000DC00A5 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -413,6 +445,14 @@
 				minimumVersion = 4.14.2;
 			};
 		};
+		4B45646C2B9CD6E600DC00A5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -420,6 +460,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4B4564542B9C291C00DC00A5 /* XCRemoteSwiftPackageReference "Parse-Swift" */;
 			productName = ParseSwift;
+		};
+		4B45646D2B9CD6E600DC00A5 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4B45646C2B9CD6E600DC00A5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

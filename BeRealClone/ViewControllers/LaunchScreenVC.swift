@@ -19,7 +19,11 @@ class LaunchScreenVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showAuthenticationView()
+        if User.current != nil {
+            loadHomeViewController()
+        } else {
+            showAuthenticationView()
+        }
     }
     
     func showAuthenticationView() {
