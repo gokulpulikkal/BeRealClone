@@ -27,4 +27,5 @@ struct User: ParseUser {
     var password: String?
 
     var age: Int?
+    var lastPostedDate: Date?
 }

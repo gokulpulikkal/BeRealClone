@@ -26,14 +26,14 @@ class PostPhotoViewController: BaseViewController {
     }
     
     @objc func postPhoto() {
-        guard let image = imageView.image, let imageData = image.jpegData(compressionQuality: 0.1) else { return }
+        guard let currentUser = User.current, let image = imageView.image, let imageData = image.jpegData(compressionQuality: 0.1) else { return }
         let caption = captionTextField.text ?? ""
         
         let imageFile = ParseFile(name: "image.jpg", data: imageData)
         var post = Post()
         post.imageFile = imageFile
         post.caption = caption
-        post.user = User.current
+        post.user = currentUser
         post.save { [weak self] result in
 
             // Switch to the main thread for any UI updates
@@ -41,13 +41,35 @@ class PostPhotoViewController: BaseViewController {
                 switch result {
                 case .success(let post):
                     print("✅ Post Saved! \(post)")
-                    self?.navigationController?.popViewController(animated: true)
+                    self?.updateUserLastPhotoUploadTime()
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
             }
         }
     }
+    
+    func updateUserLastPhotoUploadTime() {
+        guard var currentUser = User.current else { return }
+        // Update the `lastPostedDate` property on the user with the current date.
+        currentUser.lastPostedDate = Date()
+
+        // Save updates to the user (async)
+        currentUser.save { [weak self] result in
+            switch result {
+            case .success(let user):
+                print("✅ User Saved! \(user)")
+                // Switch to the main thread for any UI updates
+                DispatchQueue.main.async {
+                    // Return to previous view controller
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     override func onGettingPhotoFromDevice(_ selectedImage: UIImage) {
         self.imageView.image = selectedImage
     }
