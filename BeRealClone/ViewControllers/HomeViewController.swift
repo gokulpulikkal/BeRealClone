@@ -58,7 +58,7 @@ class HomeViewController: BaseViewController {
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 30)
         ]
         navigationController?.navigationBar.titleTextAttributes = attributes
-        navigationItem.title = "Be Real"
+        navigationItem.title = "BeReal"
         
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
         self.navigationItem.rightBarButtonItem = logoutButton

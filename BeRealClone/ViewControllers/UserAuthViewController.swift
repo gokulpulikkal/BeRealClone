@@ -12,7 +12,7 @@ protocol LoginDelegate: AnyObject {
     func didLoginSuccessfully(user: User)
 }
 
-class UserAuthViewController: UIViewController {
+class UserAuthViewController: BaseViewController {
     
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
