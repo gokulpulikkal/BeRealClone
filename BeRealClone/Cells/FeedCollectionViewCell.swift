@@ -48,13 +48,16 @@ class FeedCollectionViewCell: UICollectionViewCell {
             blurView.isHidden = false
         }
         
+        if let locationName = post.locationName {
+            locationLabel.text = locationName
+        }
+        
         if let user = post.user {
             profileNameLabel.text = user.username
         }
         if let imageFile = post.imageFile, let imageUrl = imageFile.url {
             imageView.kf.setImage(with: imageUrl)
         }
-        
         descriptionLabel.text = post.caption
     }
 }

@@ -60,7 +60,7 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
         let galleryAction = UIAlertAction(title: "Gallery", style: .default) { [weak self] (action) in
             guard let self = self else { return }
             
-            var configuration = PHPickerConfiguration()
+            var configuration = PHPickerConfiguration.init(photoLibrary: .shared())
             //0 - unlimited 1 - default
             configuration.selectionLimit = 1
             configuration.filter = .images
@@ -84,7 +84,7 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
     }
     
     // Inheriting views has to override this function
-    func onGettingPhotoFromDevice(_ selectedImage: UIImage) {
+    func onGettingPhotoFromDevice(_ selectedImage: UIImage, _ location: CLLocation?) {
         
     }
     
@@ -93,7 +93,11 @@ extension BaseViewController: PHPickerViewControllerDelegate, UIImagePickerContr
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         
-        if let itemProvider = results.first?.itemProvider{
+        let result = results.first
+        guard let assetId = result?.assetIdentifier, let location = PHAsset.fetchAssets(withLocalIdentifiers: [assetId], options: nil).firstObject?.location else {
+            return
+        }
+        if let itemProvider = result?.itemProvider {
             if itemProvider.canLoadObject(ofClass: UIImage.self){
                 itemProvider.loadObject(ofClass: UIImage.self) { image , error  in
                     if let error{
@@ -101,16 +105,39 @@ extension BaseViewController: PHPickerViewControllerDelegate, UIImagePickerContr
                     }
                     if let selectedImage = image as? UIImage{
                         DispatchQueue.main.async { [weak self] in
-                            self?.onGettingPhotoFromDevice(selectedImage)
+                            self?.onGettingPhotoFromDevice(selectedImage, location)
                         }
                     }
                 }
             }
         }
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            let image = info[.originalImage] as! UIImage
-            self.onGettingPhotoFromDevice(image)
-            self.dismiss(animated: true)
+        self.dismiss(animated: true)
+        guard let image = info[.originalImage] as? UIImage else {
+            // Handle case where image is not available
+            return
         }
+        if let mediaMetadata = info[.mediaMetadata] as? [String: Any] {
+            // Extract location from media metadata if available
+            if let gpsInfo = mediaMetadata["{GPS}"] as? [String: Any],
+               let latitude = gpsInfo["Latitude"] as? CLLocationDegrees,
+               let longitude = gpsInfo["Longitude"] as? CLLocationDegrees {
+            }
+        }
+        if #available(iOS 11.0, *) {
+            if let asset = info[.phAsset] as? PHAsset, let location = asset.location {
+                self.onGettingPhotoFromDevice(image, location)
+            }
+        } else {
+            if let assetURL = info[.referenceURL] as? URL {
+                let result = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil)
+                if let asset = result.firstObject, let location = asset.location {
+                    self.onGettingPhotoFromDevice(image, location)
+                }
+            }
+        }
+        self.onGettingPhotoFromDevice(image, nil)
+    }
 }

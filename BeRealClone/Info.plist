@@ -6,6 +6,8 @@
 	<string>Let me scan your photos</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Let me use your camera</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Let me use your location</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

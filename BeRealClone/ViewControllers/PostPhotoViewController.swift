@@ -8,11 +8,14 @@
 import UIKit
 import PhotosUI
 import ParseSwift
+import MapKit
+
 
 class PostPhotoViewController: BaseViewController {
 
     @IBOutlet weak var captionTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
+    var location: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +25,14 @@ class PostPhotoViewController: BaseViewController {
     }
     
     @IBAction func onSelectPhotoButtonClick(_ sender: Any) {
+        PHPhotoLibrary.requestAuthorization(for: .readWrite) { status in
+            switch status {
+            case .authorized:
+                print("Authorized")
+            default:
+                print("No aithorization")
+            }
+        }
         showImagePickerOptions()
     }
     
@@ -34,6 +45,24 @@ class PostPhotoViewController: BaseViewController {
         post.imageFile = imageFile
         post.caption = caption
         post.user = currentUser
+        getLocationName { locationName in
+            if let locationName = locationName {
+                post.locationName = locationName
+            }
+            post.save { [weak self] result in
+
+                // Switch to the main thread for any UI updates
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let post):
+                        print("✅ Post Saved! \(post)")
+                        self?.updateUserLastPhotoUploadTime()
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                }
+            }
+        }
         post.save { [weak self] result in
 
             // Switch to the main thread for any UI updates
@@ -45,6 +74,34 @@ class PostPhotoViewController: BaseViewController {
                 case .failure(let error):
                     print(error.localizedDescription)
                 }
+            }
+        }
+    }
+    
+    func getLocationName(completion: @escaping (String?) -> Void) {
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(location!) { (placemarks, error) in
+            if let error = error {
+                print("Reverse geocoding failed with error: \(error.localizedDescription)")
+                completion(nil) // Call completion handler with nil to indicate failure
+                return
+            }
+
+            // Check if any placemarks were found
+            if let placemark = placemarks?.first {
+                // Access location name from the placemark
+                let locationName = placemark.name ?? ""
+                print("Location name: \(locationName)")
+                completion(locationName) // Call completion handler with location name
+                return
+                
+                // You can also access other address components such as locality, administrativeArea, etc.
+                // let locality = placemark.locality ?? ""
+                // let administrativeArea = placemark.administrativeArea ?? ""
+                // ...
+            } else {
+                print("No placemarks found")
+                completion(nil) // Call completion handler with nil if no placemarks were found
             }
         }
     }
@@ -70,7 +127,10 @@ class PostPhotoViewController: BaseViewController {
         }
     }
     
-    override func onGettingPhotoFromDevice(_ selectedImage: UIImage) {
+    
+    
+    override func onGettingPhotoFromDevice(_ selectedImage: UIImage, _ location: CLLocation?) {
         self.imageView.image = selectedImage
+        self.location = location
     }
 }
