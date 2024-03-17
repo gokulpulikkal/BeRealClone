@@ -15,6 +15,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     let blurView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
@@ -22,11 +23,26 @@ class FeedCollectionViewCell: UICollectionViewCell {
         return blurEffectView
     }()
     
+    let nameInitialTextView = {
+        let nameLabelInsideImage = UILabel(frame: .zero)
+        nameLabelInsideImage.translatesAutoresizingMaskIntoConstraints = false
+        nameLabelInsideImage.textColor = UIColor.white
+        nameLabelInsideImage.font = UIFont.systemFont(ofSize: 25)
+        return nameLabelInsideImage
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        blurView.frame = bounds
+        blurView.frame = imageView.bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(blurView)
+        profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
+        profileImageView.clipsToBounds = true
+        profileImageView.addSubview(nameInitialTextView)
+        NSLayoutConstraint.activate([
+            nameInitialTextView.centerXAnchor.constraint(equalTo: profileImageView.centerXAnchor),
+            nameInitialTextView.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor)
+        ])
     }
 
     func configure(with post: Post) {
@@ -52,12 +68,31 @@ class FeedCollectionViewCell: UICollectionViewCell {
             locationLabel.text = locationName
         }
         
-        if let user = post.user {
-            profileNameLabel.text = user.username
+        if let user = post.user, let userName = user.username {
+            profileNameLabel.text = userName
+            nameInitialTextView.text = "\(userName.prefix(1))"
         }
         if let imageFile = post.imageFile, let imageUrl = imageFile.url {
             imageView.kf.setImage(with: imageUrl)
         }
+        if let createdAt = post.createdAt, let timeString = timeAgo(from: createdAt) {
+            timeLabel.text = timeString
+        }
         descriptionLabel.text = post.caption
+    }
+    
+    func timeAgo(from date: Date) -> String? {
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .full
+        formatter.allowedUnits = [.year, .month, .weekOfMonth, .day, .hour, .minute, .second]
+        formatter.maximumUnitCount = 1
+        
+        guard let timeString = formatter.string(from: date, to: Date()) else {
+            return nil
+        }
+        if timeString == "in 1 second" || timeString == "1 second ago" {
+            return "Just now"
+        }
+        return "\(timeString) ago"
     }
 }
