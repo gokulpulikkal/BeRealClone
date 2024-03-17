@@ -7,12 +7,26 @@
 
 import UIKit
 import PhotosUI
+import CoreLocation
 
 class BaseViewController: UIViewController, UINavigationControllerDelegate {
+    
+    private let locationManager = CLLocationManager()
+    var userLocation: CLLocation?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeHideKeyboard()
+        locationManager.delegate = self
+    }
+    
+    deinit {
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func startCapturingUserLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        locationManager.startUpdatingLocation()
     }
     
     func initializeHideKeyboard(){
@@ -52,8 +66,13 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { [weak self] (action) in
             guard let self = self else { return }
             let cameraImagePicker = imagePicker(sourceType: .camera)
-            self.present(cameraImagePicker, animated: true) {
-                
+            if PHPhotoLibrary.authorizationStatus() == .authorized || PHPhotoLibrary.authorizationStatus() == .authorized {
+                PHPhotoLibrary.requestAuthorization { [weak self](_) in
+                    // Present the UIImagePickerController
+                    DispatchQueue.main.async {
+                        self?.present(cameraImagePicker, animated: true, completion: nil)
+                    }
+                }
             }
         }
         // Chose from gallery
@@ -79,6 +98,7 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
     func imagePicker(sourceType: UIImagePickerController.SourceType) -> UIImagePickerController {
         let imagePickerVC = UIImagePickerController()
         imagePickerVC.sourceType = sourceType
+        imagePickerVC.allowsEditing = true
         imagePickerVC.delegate = self
         return imagePickerVC
     }
@@ -115,29 +135,16 @@ extension BaseViewController: PHPickerViewControllerDelegate, UIImagePickerContr
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         self.dismiss(animated: true)
-        guard let image = info[.originalImage] as? UIImage else {
+        guard let image = info[.editedImage] as? UIImage else {
             // Handle case where image is not available
             return
         }
-        if let mediaMetadata = info[.mediaMetadata] as? [String: Any] {
-            // Extract location from media metadata if available
-            if let gpsInfo = mediaMetadata["{GPS}"] as? [String: Any],
-               let latitude = gpsInfo["Latitude"] as? CLLocationDegrees,
-               let longitude = gpsInfo["Longitude"] as? CLLocationDegrees {
-            }
-        }
-        if #available(iOS 11.0, *) {
-            if let asset = info[.phAsset] as? PHAsset, let location = asset.location {
-                self.onGettingPhotoFromDevice(image, location)
-            }
-        } else {
-            if let assetURL = info[.referenceURL] as? URL {
-                let result = PHAsset.fetchAssets(withALAssetURLs: [assetURL], options: nil)
-                if let asset = result.firstObject, let location = asset.location {
-                    self.onGettingPhotoFromDevice(image, location)
-                }
-            }
-        }
-        self.onGettingPhotoFromDevice(image, nil)
+        self.onGettingPhotoFromDevice(image, userLocation)
+    }
+}
+
+extension BaseViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        userLocation = locations[0] // The first location in the array
     }
 }

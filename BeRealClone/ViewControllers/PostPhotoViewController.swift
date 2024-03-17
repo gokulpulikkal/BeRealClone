@@ -19,7 +19,7 @@ class PostPhotoViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        startCapturingUserLocation()
         let postButton = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postPhoto))
         self.navigationItem.rightBarButtonItem = postButton
     }
@@ -60,19 +60,6 @@ class PostPhotoViewController: BaseViewController {
                     case .failure(let error):
                         print(error.localizedDescription)
                     }
-                }
-            }
-        }
-        post.save { [weak self] result in
-
-            // Switch to the main thread for any UI updates
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let post):
-                    print("✅ Post Saved! \(post)")
-                    self?.updateUserLastPhotoUploadTime()
-                case .failure(let error):
-                    print(error.localizedDescription)
                 }
             }
         }
