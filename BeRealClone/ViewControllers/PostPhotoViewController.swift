@@ -66,8 +66,12 @@ class PostPhotoViewController: BaseViewController {
     }
     
     func getLocationName(completion: @escaping (String?) -> Void) {
+        guard let location = location else { 
+            completion(nil)
+            return
+        }
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location!) { (placemarks, error) in
+        geocoder.reverseGeocodeLocation(location) { (placemarks, error) in
             if let error = error {
                 print("Reverse geocoding failed with error: \(error.localizedDescription)")
                 completion(nil) // Call completion handler with nil to indicate failure
