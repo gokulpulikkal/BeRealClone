@@ -56,6 +56,8 @@ class PostPhotoViewController: BaseViewController {
                     switch result {
                     case .success(let post):
                         print("✅ Post Saved! \(post)")
+                        self?.removeAllPendingNotifications()
+                        self?.registerForLocalNotification()
                         self?.updateUserLastPhotoUploadTime()
                     case .failure(let error):
                         print(error.localizedDescription)

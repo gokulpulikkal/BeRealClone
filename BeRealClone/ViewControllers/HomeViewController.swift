@@ -28,6 +28,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
+        makeRequestForAuthorizationNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +110,7 @@ class HomeViewController: BaseViewController {
         User.logout { [weak self] result in
             switch result {
                 case .success:
+                    self?.removeAllPendingNotifications()
                     let launchViewController = LaunchScreenVC()
                     self?.setRootViewController(launchViewController)
                 case .failure(let error):

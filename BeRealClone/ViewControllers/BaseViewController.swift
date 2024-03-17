@@ -8,6 +8,7 @@
 import UIKit
 import PhotosUI
 import CoreLocation
+import UserNotifications
 
 class BaseViewController: UIViewController, UINavigationControllerDelegate {
     
@@ -22,6 +23,40 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
     
     deinit {
         locationManager.stopUpdatingLocation()
+    }
+    
+    func makeRequestForAuthorizationNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
+            if success {
+                print("All set!")
+            } else if let error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    func registerForLocalNotification() {
+        let content = UNMutableNotificationContent()
+        content.title = "Let's BeReal Now"
+        content.subtitle = "Take a photo and share it with friends"
+        content.sound = UNNotificationSound.default
+        // show this notification five seconds from now
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 60*60*12, repeats: false)
+
+        // add our notification request
+        let id = UUID().uuidString
+        let request = UNNotificationRequest(identifier: id, content: content, trigger: trigger)
+
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                // handle error
+                print(error)
+            }
+        }
+    }
+    
+    func removeAllPendingNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
     }
     
     func startCapturingUserLocation() {

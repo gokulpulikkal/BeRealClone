@@ -55,12 +55,12 @@ class LaunchScreenVC: BaseViewController {
         let homeVC = HomeViewController()
         setRootViewController(homeVC)
     }
-    
 }
 
 extension LaunchScreenVC: LoginDelegate {
     func didLoginSuccessfully(user: User) {
         print("Login Success for \(user.username ?? "")")
+        registerForLocalNotification()
         if let presentedViewController = presentedViewController {
             presentedViewController.dismiss(animated: true) { [weak self] in
                 self?.loadHomeViewController()
