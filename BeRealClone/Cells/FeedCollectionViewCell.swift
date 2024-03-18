@@ -16,6 +16,12 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    var post: Post?
+    var isLiked = false
+    let filledHeartImage = UIImage(systemName: "heart.fill")
+    let emptyHeartImage = UIImage(systemName: "heart")
     
     let blurView = {
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.dark)
@@ -33,7 +39,11 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        blurView.frame = imageView.bounds
+        addBlurView()
+    }
+    
+    func addBlurView() {
+        blurView.frame = bounds
         blurView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(blurView)
         profileImageView.layer.cornerRadius = profileImageView.bounds.width / 2
@@ -46,17 +56,18 @@ class FeedCollectionViewCell: UICollectionViewCell {
     }
 
     func configure(with post: Post) {
+        self.post = post
         if let currentUser = User.current,
-
+           
             // Get the date the user last shared a post (cast to Date).
            let lastPostedDate = currentUser.lastPostedDate,
-
+           
             // Get the date the given post was created.
            let postCreatedDate = post.createdAt,
-
+           
             // Get the difference in hours between when the given post was created and the current user last posted.
            let diffHours = Calendar.current.dateComponents([.hour], from: postCreatedDate, to: lastPostedDate).hour {
-
+            
             // Hide the blur view if the given post was created within 24 hours of the current user's last post. (before or after)
             blurView.isHidden = abs(diffHours) < 24
         } else {
@@ -78,6 +89,13 @@ class FeedCollectionViewCell: UICollectionViewCell {
         if let createdAt = post.createdAt, let timeString = timeAgo(from: createdAt) {
             timeLabel.text = timeString
         }
+        if let likes = post.likes, let currentUser = User.current {
+            let currentUserLiked = likes.contains { $0 == currentUser.username }
+            isLiked = currentUserLiked
+        } else {
+            isLiked = false
+        }
+        setLikeButtonUI()
         descriptionLabel.text = post.caption
     }
     
@@ -94,5 +112,40 @@ class FeedCollectionViewCell: UICollectionViewCell {
             return "Just now"
         }
         return "\(timeString) ago"
+    }
+    @IBAction func onLikeButtonClick(_ sender: Any) {
+        isLiked.toggle()
+        setLikeButtonUI()
+        updateLikeInPost()
+    }
+    
+    func setLikeButtonUI() {
+        let image = isLiked ? filledHeartImage : emptyHeartImage
+        likeButton.setImage(image, for: .normal)
+    }
+    
+    func updateLikeInPost() {
+        guard var post = post, let currentUser = User.current else { return }
+        var likes = post.likes ?? []
+        if isLiked {
+            if !likes.contains(where: { $0 == currentUser.username }) {
+                // If the user hasn't already liked the post, add them to the list of likes
+                likes.append(currentUser.username!)
+            }
+        } else {
+            likes.removeAll { $0 == currentUser.username }
+        }
+        DispatchQueue.global().async { [weak self] in
+            guard self != nil else { return }
+            post.likes = likes
+            post.save { result in
+                switch result {
+                case .success(let post):
+                    print("✅ Post Like Saved! \(post)")
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
     }
 }

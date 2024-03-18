@@ -21,4 +21,5 @@ struct Post: ParseObject {
     var user: User?
     var imageFile: ParseFile?
     var locationName: String?
+    var likes: [String]?
 }
