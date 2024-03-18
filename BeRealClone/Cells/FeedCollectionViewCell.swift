@@ -16,7 +16,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var profileNameLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var likeImageView: UIImageView!
     
     var post: Post?
     var isLiked = false
@@ -40,7 +40,14 @@ class FeedCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         addBlurView()
+        configureLikeImageView()
     }
+    
+    func configureLikeImageView() {
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
+        likeImageView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
     
     func addBlurView() {
         blurView.frame = bounds
@@ -113,7 +120,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
         }
         return "\(timeString) ago"
     }
-    @IBAction func onLikeButtonClick(_ sender: Any) {
+    @objc func imageViewTapped() {
         isLiked.toggle()
         setLikeButtonUI()
         updateLikeInPost()
@@ -121,7 +128,7 @@ class FeedCollectionViewCell: UICollectionViewCell {
     
     func setLikeButtonUI() {
         let image = isLiked ? filledHeartImage : emptyHeartImage
-        likeButton.setImage(image, for: .normal)
+        likeImageView.image = image
     }
     
     func updateLikeInPost() {

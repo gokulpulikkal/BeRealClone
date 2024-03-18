@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="415" height="388"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="poC-KP-ZAK">
+                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="poC-KP-ZAK">
                         <rect key="frame" x="10" y="10" width="395" height="368"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="VR6-iy-x8D">
@@ -61,23 +61,24 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="NnJ-Mv-eFb">
-                                <rect key="frame" x="0.0" y="54" width="395" height="314"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zrz-eN-geT">
+                                <rect key="frame" x="0.0" y="66" width="395" height="236"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="235.66999999999999" id="TP4-80-uWt"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="left" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="NnJ-Mv-eFb">
+                                <rect key="frame" x="0.0" y="318" width="395" height="50"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zrz-eN-geT">
-                                        <rect key="frame" x="0.0" y="0.0" width="395" height="235.66666666666666"/>
-                                    </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dBS-W1-Hck">
-                                        <rect key="frame" x="0.0" y="239.66666666666669" width="50" height="50"/>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2ER-Bg-YD5">
+                                        <rect key="frame" x="0.0" y="1.9999999999999982" width="25" height="22"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="Lup-ud-Gwz"/>
-                                            <constraint firstAttribute="width" constant="50" id="XI1-w2-qgN"/>
+                                            <constraint firstAttribute="height" constant="25" id="G3Z-Pr-DdT"/>
+                                            <constraint firstAttribute="width" constant="25" id="YHT-TQ-ChA"/>
                                         </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system"/>
-                                    </button>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTH-7o-uec">
-                                        <rect key="frame" x="0.0" y="293.66666666666669" width="41.333333333333336" height="20.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="25" width="41.333333333333336" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -85,6 +86,10 @@
                                 </subviews>
                             </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="zrz-eN-geT" firstAttribute="leading" secondItem="poC-KP-ZAK" secondAttribute="leading" id="oi8-ol-OEF"/>
+                            <constraint firstAttribute="trailing" secondItem="zrz-eN-geT" secondAttribute="trailing" id="qRE-Kc-T8t"/>
+                        </constraints>
                     </stackView>
                 </subviews>
             </view>
@@ -99,6 +104,7 @@
             <connections>
                 <outlet property="descriptionLabel" destination="RTH-7o-uec" id="9Ub-kk-0GA"/>
                 <outlet property="imageView" destination="zrz-eN-geT" id="pTg-pD-4nw"/>
+                <outlet property="likeImageView" destination="2ER-Bg-YD5" id="ZGy-Q2-061"/>
                 <outlet property="locationLabel" destination="P6H-Dw-Aat" id="R6k-TV-rAO"/>
                 <outlet property="profileImageView" destination="7xA-HF-hZr" id="dEI-vc-m9r"/>
                 <outlet property="profileNameLabel" destination="nep-VJ-Ohe" id="mYk-uV-XYy"/>
