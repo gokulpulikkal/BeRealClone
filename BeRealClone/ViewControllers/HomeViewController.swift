@@ -14,7 +14,6 @@ class HomeViewController: BaseViewController {
         let createPostButton = UIButton(type: .system)
         createPostButton.translatesAutoresizingMaskIntoConstraints = false
         createPostButton.backgroundColor = .blue
-        createPostButton.layer.cornerRadius = 20
         return createPostButton
     }()
     
@@ -70,15 +69,17 @@ class HomeViewController: BaseViewController {
         let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(logoutUser))
         self.navigationItem.rightBarButtonItem = logoutButton
         
-        postItButton.setTitle("Post something", for: .normal)
+        postItButton.setTitle("BeReal", for: .normal)
         postItButton.setTitleColor(.white, for: .normal)
+        postItButton.backgroundColor = .systemBlue
+        postItButton.layer.cornerRadius = 35
         postItButton.addTarget(self, action: #selector(createPostButtonTapped), for: .touchUpInside)
         view.addSubview(postItButton)
         NSLayoutConstraint.activate([
             postItButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             postItButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
-            postItButton.widthAnchor.constraint(equalToConstant: 150),
-            postItButton.heightAnchor.constraint(equalToConstant: 40)
+            postItButton.widthAnchor.constraint(equalToConstant: 70),
+            postItButton.heightAnchor.constraint(equalToConstant: 70)
         ])
         
     }
