@@ -149,8 +149,9 @@ extension BaseViewController: PHPickerViewControllerDelegate, UIImagePickerContr
         picker.dismiss(animated: true)
         
         let result = results.first
-        guard let assetId = result?.assetIdentifier, let location = PHAsset.fetchAssets(withLocalIdentifiers: [assetId], options: nil).firstObject?.location else {
-            return
+        var location = userLocation
+        if let assetId = result?.assetIdentifier, let photoLocation = PHAsset.fetchAssets(withLocalIdentifiers: [assetId], options: nil).firstObject?.location {
+            location = photoLocation
         }
         if let itemProvider = result?.itemProvider {
             if itemProvider.canLoadObject(ofClass: UIImage.self){
