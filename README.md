@@ -7,6 +7,7 @@ This is a clone of the BeReal app created for iOS using Swift with backend suppo
 - **Comments**: Users can comment on posts to interact with other users.
 - **Likes**: Users can like posts to show appreciation for the content.
 - **Notifications**: Users receive notifications to remind them to post something
+- **User Location**: The app uses user location to attach metadata to photos, allowing users to share their location along with their posts.
 
 ## Tech Stack
 
@@ -15,6 +16,7 @@ This is a clone of the BeReal app created for iOS using Swift with backend suppo
 - **Database**: Parse Server
 - **Authentication**: Parse User Authentication
 - **Networking**: URLSession
+- **Location Services**: Core Location
 - **Image Loading**: Kingfisher
 - **UI Design**: Storyboards, Auto Layout
 
