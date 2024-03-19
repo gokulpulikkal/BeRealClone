@@ -27,6 +27,7 @@ class HomeViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUi()
+        addSpinningWheel()
         makeRequestForAuthorizationNotification()
     }
     
@@ -38,6 +39,7 @@ class HomeViewController: BaseViewController {
     func makeQueryForFeeds() {
         // Get the date for yesterday. Adding (-1) day is equivalent to subtracting a day.
         // NOTE: `Date()` is the date and time of "right now".
+        spinningWheel.startAnimating()
         let yesterdayDate = Calendar.current.date(byAdding: .day, value: (-1), to: Date())!
         let query = Post.query()
             .include("user")
@@ -50,7 +52,11 @@ class HomeViewController: BaseViewController {
             switch result {
             case .success(let posts):
                 // Update local posts property with fetched posts
-                self?.posts = posts
+                DispatchQueue.main.async {
+                    self?.posts = posts
+                    self?.spinningWheel.stopAnimating()
+                }
+                
             case .failure(let error):
                 print(error.localizedDescription)
             }
