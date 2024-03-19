@@ -15,6 +15,13 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
     private let locationManager = CLLocationManager()
     var userLocation: CLLocation?
     
+    let spinningWheel = {
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.color = .gray
+        return activityIndicator
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         initializeHideKeyboard()
@@ -23,6 +30,12 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
     
     deinit {
         locationManager.stopUpdatingLocation()
+    }
+    
+    func addSpinningWheel() {
+        view.addSubview(spinningWheel)
+        spinningWheel.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        spinningWheel.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
     
     func makeRequestForAuthorizationNotification() {

@@ -6,12 +6,16 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommentsViewController" customModule="BeRealClone" customModuleProvider="target">
             <connections>
+                <outlet property="noCommentsLabel" destination="Pgm-s8-taM" id="eRj-vq-o5S"/>
                 <outlet property="profileImageView" destination="HVf-Vm-UFB" id="lSg-Ra-sJU"/>
+                <outlet property="tableView" destination="fww-Vu-P47" id="Zto-7w-jwd"/>
+                <outlet property="textInputView" destination="72v-bz-jqe" id="M5W-Tr-BGd"/>
                 <outlet property="textInputViewBottomConstraint" destination="Rgz-Zb-uF3" id="hOa-AM-oYy"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -56,13 +60,30 @@
                         </button>
                     </subviews>
                 </stackView>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="fww-Vu-P47">
+                    <rect key="frame" x="5" y="64" width="383" height="693"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <color key="sectionIndexBackgroundColor" systemColor="systemRedColor"/>
+                </tableView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No comments so far" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgm-s8-taM">
+                    <rect key="frame" x="119.66666666666667" y="416" width="153.66666666666663" height="20.333333333333314"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.094206410277750119" green="0.075930769031986659" blue="0.041283590210677797" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.11057641672104901" green="0.11057641672104901" blue="0.11057641672104901" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="Pgm-s8-taM" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="2Jg-zt-HFF"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5fY-Nc-wDQ" secondAttribute="trailing" constant="5" id="4Pr-ag-DMF"/>
+                <constraint firstItem="fww-Vu-P47" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="5" id="6cv-P6-Li9"/>
+                <constraint firstItem="5fY-Nc-wDQ" firstAttribute="top" secondItem="fww-Vu-P47" secondAttribute="bottom" constant="5" id="6qP-Ml-AjB"/>
                 <constraint firstItem="5fY-Nc-wDQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="7vJ-Ms-tlO"/>
+                <constraint firstItem="Pgm-s8-taM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ExL-xP-CO8"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5fY-Nc-wDQ" secondAttribute="bottom" constant="6" id="Rgz-Zb-uF3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="fww-Vu-P47" secondAttribute="trailing" constant="5" id="dKK-ju-Aj8"/>
+                <constraint firstItem="fww-Vu-P47" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="5" id="ryp-GT-Vud"/>
             </constraints>
             <point key="canvasLocation" x="-66" y="-16"/>
         </view>
@@ -72,5 +93,11 @@
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>
