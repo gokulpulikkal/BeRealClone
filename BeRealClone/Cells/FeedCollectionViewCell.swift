@@ -8,6 +8,10 @@
 import UIKit
 import Kingfisher
 
+protocol FeedCollectionViewCellDelegate: AnyObject {
+    func didTapCommentButton(_ post: Post)
+}
+
 class FeedCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -17,7 +21,9 @@ class FeedCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var likeImageView: UIImageView!
+    @IBOutlet weak var commentImageView: UIImageView!
     
+    weak var delegate: FeedCollectionViewCellDelegate?
     var post: Post?
     var isLiked = false
     let filledHeartImage = UIImage(systemName: "heart.fill")
@@ -40,12 +46,14 @@ class FeedCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         addBlurView()
-        configureLikeImageView()
+        configureButtonImageViews()
     }
     
-    func configureLikeImageView() {
+    func configureButtonImageViews() {
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageViewTapped))
         likeImageView.addGestureRecognizer(tapGestureRecognizer)
+        let commentTapGesture = UITapGestureRecognizer(target: self, action: #selector(commentImageViewTapped))
+        commentImageView.addGestureRecognizer(commentTapGesture)
     }
     
     
@@ -120,10 +128,16 @@ class FeedCollectionViewCell: UICollectionViewCell {
         }
         return "\(timeString) ago"
     }
+    
     @objc func imageViewTapped() {
         isLiked.toggle()
         setLikeButtonUI()
         updateLikeInPost()
+    }
+    
+    @objc func commentImageViewTapped() {
+        guard let post = post else { return }
+        delegate?.didTapCommentButton(post)
     }
     
     func setLikeButtonUI() {

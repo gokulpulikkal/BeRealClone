@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B2C6EE32BA8C625005727F3 /* CommentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B2C6EE12BA8C625005727F3 /* CommentsViewController.swift */; };
+		4B2C6EE42BA8C625005727F3 /* CommentsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4B2C6EE22BA8C625005727F3 /* CommentsViewController.xib */; };
 		4B4564412B9C28CD00DC00A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564402B9C28CD00DC00A5 /* AppDelegate.swift */; };
 		4B4564432B9C28CD00DC00A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564422B9C28CD00DC00A5 /* SceneDelegate.swift */; };
 		4B4564452B9C28CD00DC00A5 /* LaunchScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B4564442B9C28CD00DC00A5 /* LaunchScreenVC.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4B2C6EE12BA8C625005727F3 /* CommentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsViewController.swift; sourceTree = "<group>"; };
+		4B2C6EE22BA8C625005727F3 /* CommentsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentsViewController.xib; sourceTree = "<group>"; };
 		4B45643D2B9C28CD00DC00A5 /* BeRealClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeRealClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B4564402B9C28CD00DC00A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B4564422B9C28CD00DC00A5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +107,8 @@
 				4B4564612B9C4EE300DC00A5 /* PostPhotoViewController.swift */,
 				4B4564622B9C4EE300DC00A5 /* PostPhotoViewController.xib */,
 				4B45646F2B9CDAD000DC00A5 /* BaseViewController.swift */,
+				4B2C6EE12BA8C625005727F3 /* CommentsViewController.swift */,
+				4B2C6EE22BA8C625005727F3 /* CommentsViewController.xib */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -191,6 +197,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4B2C6EE42BA8C625005727F3 /* CommentsViewController.xib in Resources */,
 				4B45644D2B9C28CF00DC00A5 /* LaunchScreen.storyboard in Resources */,
 				4B4564642B9C4EE300DC00A5 /* PostPhotoViewController.xib in Resources */,
 				4B45644A2B9C28CF00DC00A5 /* Assets.xcassets in Resources */,
@@ -209,6 +216,7 @@
 			files = (
 				4B4564452B9C28CD00DC00A5 /* LaunchScreenVC.swift in Sources */,
 				4B4564412B9C28CD00DC00A5 /* AppDelegate.swift in Sources */,
+				4B2C6EE32BA8C625005727F3 /* CommentsViewController.swift in Sources */,
 				4B4564432B9C28CD00DC00A5 /* SceneDelegate.swift in Sources */,
 				4B4564662B9C544200DC00A5 /* Post.swift in Sources */,
 				4B45645E2B9C3CE000DC00A5 /* User.swift in Sources */,

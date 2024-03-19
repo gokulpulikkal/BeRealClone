@@ -64,7 +64,7 @@ class BaseViewController: UIViewController, UINavigationControllerDelegate {
         locationManager.startUpdatingLocation()
     }
     
-    func initializeHideKeyboard(){
+    func initializeHideKeyboard() {
         //Declare a Tap Gesture Recognizer which will trigger our dismissMyKeyboard() function
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissMyKeyboard))
         //Add this tap gesture recognizer to the parent view

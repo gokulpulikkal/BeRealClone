@@ -136,6 +136,7 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FeedCollectionViewCell", for: indexPath) as! FeedCollectionViewCell
         // Configure the cell
         cell.configure(with: posts[indexPath.item])
+        cell.delegate = self
         return cell
     }
 
@@ -144,5 +145,13 @@ extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelega
         // Calculate cell size based on collection view width and aspect ratio
         let width = collectionView.bounds.width - 1 // Divide by number of columns, subtract 1 for spacing
         return CGSize(width: width, height: width)
+    }
+}
+
+extension HomeViewController: FeedCollectionViewCellDelegate {
+    func didTapCommentButton(_ post: Post) {
+        let commentsViewController = CommentsViewController(post: post)
+        commentsViewController.modalPresentationStyle = .popover
+        present(commentsViewController, animated: true, completion: nil)
     }
 }

@@ -62,23 +62,35 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zrz-eN-geT">
-                                <rect key="frame" x="0.0" y="66" width="395" height="236"/>
+                                <rect key="frame" x="0.0" y="64" width="395" height="236"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="235.66999999999999" id="TP4-80-uWt"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="left" axis="vertical" distribution="fillEqually" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="NnJ-Mv-eFb">
-                                <rect key="frame" x="0.0" y="318" width="395" height="50"/>
+                            <stackView opaque="NO" contentMode="left" axis="vertical" distribution="fillEqually" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="NnJ-Mv-eFb">
+                                <rect key="frame" x="0.0" y="314" width="395" height="54"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2ER-Bg-YD5">
-                                        <rect key="frame" x="0.0" y="1.9999999999999982" width="25" height="22"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="25" id="G3Z-Pr-DdT"/>
-                                            <constraint firstAttribute="width" constant="25" id="YHT-TQ-ChA"/>
-                                        </constraints>
-                                    </imageView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="L6C-tW-2PL">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="25"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2ER-Bg-YD5">
+                                                <rect key="frame" x="0.0" y="1.9999999999999982" width="25" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="25" id="G3Z-Pr-DdT"/>
+                                                    <constraint firstAttribute="width" constant="25" id="YHT-TQ-ChA"/>
+                                                </constraints>
+                                            </imageView>
+                                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bubble.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="eGo-Iv-VkN">
+                                                <rect key="frame" x="35" y="0.99999999999999822" width="25" height="23.666666666666664"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="25" id="I0n-a2-8Ke"/>
+                                                    <constraint firstAttribute="height" constant="25" id="rkq-hb-KKK"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                    </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTH-7o-uec">
-                                        <rect key="frame" x="0.0" y="25" width="41.333333333333336" height="25"/>
+                                        <rect key="frame" x="0.0" y="29" width="41.333333333333336" height="25"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -102,6 +114,7 @@
             </constraints>
             <size key="customSize" width="415" height="388"/>
             <connections>
+                <outlet property="commentImageView" destination="eGo-Iv-VkN" id="ZRc-9A-ADa"/>
                 <outlet property="descriptionLabel" destination="RTH-7o-uec" id="9Ub-kk-0GA"/>
                 <outlet property="imageView" destination="zrz-eN-geT" id="pTg-pD-4nw"/>
                 <outlet property="likeImageView" destination="2ER-Bg-YD5" id="ZGy-Q2-061"/>
@@ -114,6 +127,7 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="bubble.circle" catalog="system" width="128" height="123"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
