@@ -1,4 +1,4 @@
-# BeReal.[Clone]
+# BeReal.
 
 This is a clone of the BeReal app created for iOS using Swift with backend support from back4App. BeReal is a social media platform that allows users to share authentic moments with their friends and followers.
 ## Features
